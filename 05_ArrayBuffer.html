@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 1、构造函数
+        // new ArrayBuffer(length, options)
+        // (1)length: 指定创建的长度
+        // (2)maxByteLength: 数组缓冲区的最大大小（以字节为单位）。且可以通过resize方法修改
+        const arrayBuffer = new ArrayBuffer(8, { maxByteLength: 16 });
+        arrayBuffer.resize(12);
+        console.log(arrayBuffer, "arrayBuffer");
+        // 2、属性
+        // (1)byteLength: ArrayBuffer 的只读大小（以字节为单位）。这是在数组构建时确定的，无法更改。
+        console.log(arrayBuffer.byteLength, "byteLength")
+        // 3、方法
+        // (1)slice(): 返回一个新的 ArrayBuffer，它的内容是该 ArrayBuffer 从 begin（包括）到 end（不包括）字节的拷贝。如果 begin 或 end 是负数，它则指的是从数组末尾开始的索引，而不是从头开始的索引。
+        // 4、ArrayBuffer是只读的，如果要操作的话，只能通过类型化数组或者DataView的方式
+        // 5、类型化数组的方式操作ArrayBuffer
+        // 创建一个指向b的视图v1，采用Int32类型，开始于默认的字节索引0，直到缓冲区的末尾
+        var v1 = new Int32Array(arrayBuffer);
+        console.log(v1, "Int32Array")
+        // 创建一个指向b的视图v2，采用Uint8类型，开始于字节索引2，直到缓冲区的末尾  
+        var v2 = new Uint8Array(arrayBuffer, 2);
+        console.log(v2, "Uint8Array")
+        // 创建一个指向b的视图v3，采用Int16类型，开始于字节索引2，长度为2  
+        var v3 = new Int16Array(arrayBuffer, 2, 2);  
+        console.log(v3, "Int16Array")
+        // 6、DataView的对象
+        // DataView对象在可以在ArrayBuffer中的任何位置读取和写入不同类型的二进制数据。
+        // var dataView = new DataView(DataView(buffer, byteOffset[可选], byteLength[可选]);
+        const dataView = new DataView(arrayBuffer)
+        console.log(dataView, "dataView")
+
+    </script>
+</body>
+</html>

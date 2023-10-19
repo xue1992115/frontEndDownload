@@ -6,7 +6,34 @@
     <title>Document</title>
 </head>
 <body>
-    <!-- 必须是同源的URL -->
-    <a href="/images/01.png" download="_5332_">下载</a>
+    <script>
+        const arr = ['a',2,3,4,5,];
+        const blob = new Blob(arr);
+        // 1、size
+        console.log(blob.size, "size")
+        // 2、type
+        console.log(blob.type, "type")
+        // 3、arrayBuffer
+        // 返回一个 promise，其会兑现一个包含 Blob 所有内容的二进制格式的 ArrayBuffer
+        const arrayBuffer = blob.arrayBuffer();
+        arrayBuffer.then((res) => {
+            // res是上边数组对应的二进制格式
+            console.log(res, "arrayBuffer")
+        })
+        // 4、slice指定范围
+        const sliceBlob = blob.slice(0, 1)
+        console.log(sliceBlob, "slice")
+        // 5、stream 
+        // 返回一个可以读区blob对象的ReadableStream（表示可读的字节数据流）
+        const streamBlob = blob.stream();
+        streamBlob.getReader().read().then((res) => {
+            console.log(res, "stream")
+        })
+        // 6、text
+        // 返回一个 promise，其会兑现一个包含 Blob 所有内容的 UTF-8 格式的字符串。
+        const textBlob = blob.text().then((res) => {
+            console.log(res, "text") // a2345
+        })
+    </script>
 </body>
 </html>

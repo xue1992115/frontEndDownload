@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const arr = [1,2,3,4,5];
+        // 1、构造函数传参数 
+        // var myFile = new File(bits, name[, options]);
+        // (1)bits:必须传 可以ArrayBuffer、ArrayBufferView、Blob、DOMString对象的Array，或者任何对象的组合
+        // (2)name:必须传 表示文件名称，或者文件路径。
+        // (3)options:
+        // type: DOMString，表示将要放到文件中的内容的 MIME 类型。默认值为 "" 。
+        // lastModified: 数值，表示文件最后修改时间的 Unix 时间戳（毫秒）。默认值为 Date.now()
+        const file = new File(arr, "text.txt");
+        // 2、属性
+        // (1)lastModified: 最后的修改时间,时间戳
+        // (2)lastModifiedDate：最后的修改日期
+        // (3)name: 文件名称
+        // (4)size: 文件大小
+        // (5)type: 文件的MIME类型
+        // (6)webkitRelativePath: 返回 File 相关的 path 或 URL。
+        console.log(file, "file")
+    </script>
+</body>
+</html>
